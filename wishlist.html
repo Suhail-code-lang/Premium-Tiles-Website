@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wishlist</title>
+
+<link href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css" rel="stylesheet">
+
+<style>
+
+body {
+  background: #0b0b0b;
+  color: white;
+  font-family: sans-serif;
+  margin: 0;
+}
+
+h1 {
+  text-align: center;
+  margin: 30px 0;
+}
+
+/* GRID */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 20px;
+  padding: 30px;
+}
+
+.card {
+  background: #111;
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+}
+
+.card img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  cursor: pointer;
+}
+
+.card h3 {
+  padding: 10px;
+}
+
+/* REMOVE BUTTON ❤️ */
+.remove {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: rgba(0,0,0,0.6);
+  padding: 8px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.remove i {
+  color: red;
+}
+
+/* LIGHTBOX */
+#lightbox {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.95);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.4s;
+
+  z-index: 9999;
+}
+
+#lightbox.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+#lightbox img {
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 12px;
+
+  transform: scale(0.8);
+  transition: 0.4s;
+}
+
+#lightbox.active img {
+  transform: scale(1);
+}
+
+#close-btn {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  font-size: 40px;
+  cursor: pointer;
+}
+
+/* MOBILE */
+@media(max-width:768px){
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>Your Wishlist ❤️</h1>
+
+<div class="grid" id="wishlist-container"></div>
+
+<!-- LIGHTBOX -->
+<div id="lightbox">
+  <span id="close-btn">&times;</span>
+  <img id="lightbox-img">
+</div>
+
+<script>
+
+// PRODUCTS DATA
+const products = {
+  k1: { name: "Urban Slate", img: "urban slate.jpg" },
+  k2: { name: "Glossy White", img: "glossywhite.jpeg" },
+  k3: { name: "Granite Black", img: "granite black.jpeg" },
+  k4: { name: "Beige Stone", img: "beiuge stone.jpg" }
+};
+
+// LOAD WISHLIST
+let saved = JSON.parse(localStorage.getItem("wishlist")) || [];
+
+const container = document.getElementById("wishlist-container");
+
+function renderWishlist(){
+  container.innerHTML = "";
+
+  if(saved.length === 0){
+    container.innerHTML = "<p style='text-align:center'>No items added yet 😢</p>";
+    return;
+  }
+
+  saved.forEach(id => {
+    if(products[id]){
+      container.innerHTML += `
+        <div class="card">
+          <div class="remove" onclick="removeItem('${id}')">
+            <i class="ri-heart-fill"></i>
+          </div>
+          <img src="${products[id].img}" onclick="openImage('${products[id].img}')">
+          <h3>${products[id].name}</h3>
+        </div>
+      `;
+    }
+  });
+}
+
+// REMOVE ITEM
+function removeItem(id){
+  saved = saved.filter(item => item !== id);
+  localStorage.setItem("wishlist", JSON.stringify(saved));
+  renderWishlist();
+}
+
+// LIGHTBOX
+const lightbox = document.getElementById("lightbox");
+const lightboxImg = document.getElementById("lightbox-img");
+
+function openImage(src){
+  lightbox.classList.add("active");
+  lightboxImg.src = src;
+}
+
+document.getElementById("close-btn").onclick = () => {
+  lightbox.classList.remove("active");
+};
+
+lightbox.onclick = (e) => {
+  if(e.target !== lightboxImg){
+    lightbox.classList.remove("active");
+  }
+};
+
+// INIT
+renderWishlist();
+
+</script>
+
+</body>
+</html>

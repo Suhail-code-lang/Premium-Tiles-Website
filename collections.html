@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Collections</title>
+
+<link href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css" rel="stylesheet">
+
+<style>
+
+body {
+  background: #0f0f0f;
+  color: white;
+  font-family: sans-serif;
+  margin: 0;
+}
+
+/* TITLE */
+h1 {
+  text-align: center;
+  margin: 40px 0;
+}
+
+/* GRID */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  gap: 25px;
+  padding: 40px;
+}
+
+/* CARD */
+.card {
+  position: relative;
+  background: #111;
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: 0.4s;
+}
+
+.card:hover {
+  transform: scale(1.03);
+}
+
+/* IMAGE */
+.card img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+}
+
+/* TITLE */
+.card h3 {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+}
+
+/* HEART */
+.heart {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: rgba(0,0,0,0.6);
+  padding: 8px;
+  border-radius: 50%;
+  z-index: 2;
+  cursor: pointer;
+}
+
+.heart.active i {
+  color: red;
+}
+
+/* LIGHTBOX */
+#lightbox {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.95);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.4s;
+  z-index: 9999;
+}
+
+#lightbox.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+#lightbox img {
+  max-width: 90%;
+  max-height: 90%;
+  transform: scale(0.8);
+  transition: 0.4s;
+}
+
+#lightbox.active img {
+  transform: scale(1);
+}
+
+#close-btn {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  font-size: 40px;
+  cursor: pointer;
+}
+
+/* RESPONSIVE */
+@media(max-width:1024px){
+  .grid { grid-template-columns: repeat(2,1fr); }
+}
+
+@media(max-width:768px){
+  .grid { grid-template-columns: 1fr; }
+}
+
+</style>
+</head>
+
+<body>
+
+<h1>All Collections</h1>
+
+<div class="grid">
+
+<div class="card" data-id="k1">
+<div class="heart" onclick="toggleHeart(this)">
+<i class="ri-heart-line"></i>
+</div>
+<img src="carraraluxe.jpg">
+<h3>Carrara Luxe</h3>
+</div>
+
+<div class="card" data-id="k2">
+<div class="heart" onclick="toggleHeart(this)">
+<i class="ri-heart-line"></i>
+</div>
+<img src="urban slate.jpg">
+<h3>Urban Slate</h3>
+</div>
+
+<div class="card" data-id="k3">
+<div class="heart" onclick="toggleHeart(this)">
+<i class="ri-heart-line"></i>
+</div>
+<img src="rustic oak.jpg">
+<h3>Rustic Oak</h3>
+</div>
+
+<div class="card" data-id="k4">
+<div class="heart" onclick="toggleHeart(this)">
+<i class="ri-heart-line"></i>
+</div>
+<img src="platinum gloss.jpg">
+<h3>Platinum Gloss</h3>
+</div>
+
+</div>
+
+<!-- LIGHTBOX -->
+<div id="lightbox">
+<span id="close-btn">&times;</span>
+<img id="lightbox-img">
+</div>
+
+<script>
+
+/* WISHLIST TOGGLE */
+function toggleHeart(el) {
+  const card = el.closest(".card");
+  const id = card.getAttribute("data-id");
+  const icon = el.querySelector("i");
+
+  let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+
+  if (wishlist.includes(id)) {
+    wishlist = wishlist.filter(item => item !== id);
+    icon.classList.remove("ri-heart-fill");
+    icon.classList.add("ri-heart-line");
+    el.classList.remove("active");
+  } else {
+    wishlist.push(id);
+    icon.classList.remove("ri-heart-line");
+    icon.classList.add("ri-heart-fill");
+    el.classList.add("active");
+  }
+
+  localStorage.setItem("wishlist", JSON.stringify(wishlist));
+}
+
+/* LOAD STATE */
+document.addEventListener("DOMContentLoaded", () => {
+  const saved = JSON.parse(localStorage.getItem("wishlist")) || [];
+
+  document.querySelectorAll(".card").forEach(card => {
+    const id = card.getAttribute("data-id");
+    const icon = card.querySelector(".heart i");
+
+    if (saved.includes(id)) {
+      icon.classList.remove("ri-heart-line");
+      icon.classList.add("ri-heart-fill");
+      card.querySelector(".heart").classList.add("active");
+    }
+  });
+});
+
+/* LIGHTBOX */
+const cards = document.querySelectorAll(".card");
+const lightbox = document.getElementById("lightbox");
+const lightboxImg = document.getElementById("lightbox-img");
+
+cards.forEach(card => {
+  card.addEventListener("click", (e) => {
+
+    if (e.target.closest(".heart")) return;
+
+    const img = card.querySelector("img");
+
+    lightbox.classList.add("active");
+    lightboxImg.src = img.src;
+  });
+});
+
+document.getElementById("close-btn").onclick = () => {
+  lightbox.classList.remove("active");
+};
+
+lightbox.onclick = (e) => {
+  if (e.target !== lightboxImg) {
+    lightbox.classList.remove("active");
+  }
+};
+
+</script>
+
+</body>
+</html>
