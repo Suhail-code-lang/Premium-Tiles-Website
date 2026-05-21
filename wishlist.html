@@ -1,118 +1,404 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Wishlist</title>
+
+<title>Luxury Wishlist</title>
 
 <link href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css" rel="stylesheet">
 
 <style>
 
-body {
-  background: #0b0b0b;
-  color: white;
-  font-family: sans-serif;
-  margin: 0;
+/* ========================= */
+/* GLOBAL */
+/* ========================= */
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
 }
 
-h1 {
-  text-align: center;
-  margin: 30px 0;
+body{
+background:#0b0b0b;
+color:white;
+font-family:sans-serif;
+overflow-x:hidden;
 }
 
+/* ========================= */
+/* NAVBAR */
+/* ========================= */
+
+.navbar{
+
+position:fixed;
+top:0;
+left:0;
+
+width:100%;
+
+display:flex;
+justify-content:space-between;
+align-items:center;
+
+padding:20px 60px;
+
+background:rgba(0,0,0,0.45);
+
+backdrop-filter:blur(14px);
+
+border-bottom:1px solid rgba(255,255,255,0.08);
+
+z-index:9999;
+}
+
+.logo{
+font-size:1.5rem;
+font-weight:700;
+letter-spacing:2px;
+}
+
+.back-btn{
+
+padding:12px 22px;
+
+background:rgba(255,255,255,0.08);
+
+border-radius:12px;
+
+color:white;
+
+text-decoration:none;
+
+transition:0.3s;
+}
+
+.back-btn:hover{
+background:gold;
+color:black;
+}
+
+/* ========================= */
+/* HERO */
+/* ========================= */
+
+.hero{
+
+padding-top:150px;
+padding-bottom:70px;
+
+text-align:center;
+}
+
+.hero h1{
+font-size:4rem;
+margin-bottom:20px;
+}
+
+.hero p{
+color:#aaa;
+font-size:1.1rem;
+}
+
+/* ========================= */
 /* GRID */
-.grid {
-  display: grid;
-  grid-template-columns: repeat(3,1fr);
-  gap: 20px;
-  padding: 30px;
+/* ========================= */
+
+.grid{
+
+display:grid;
+
+grid-template-columns:repeat(3,1fr);
+
+gap:30px;
+
+padding:0 60px 100px;
 }
 
-.card {
-  background: #111;
-  border-radius: 10px;
-  overflow: hidden;
-  position: relative;
+.card{
+
+background:#111;
+
+border-radius:24px;
+
+overflow:hidden;
+
+position:relative;
+
+transition:0.4s;
+
+border:1px solid rgba(255,255,255,0.05);
 }
 
-.card img {
-  width: 100%;
-  height: 250px;
-  object-fit: cover;
-  cursor: pointer;
+.card:hover{
+transform:translateY(-12px);
+border-color:rgba(255,215,0,0.3);
 }
 
-.card h3 {
-  padding: 10px;
+/* IMAGE */
+
+.card-img{
+position:relative;
+overflow:hidden;
 }
 
-/* REMOVE BUTTON ❤️ */
-.remove {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  background: rgba(0,0,0,0.6);
-  padding: 8px;
-  border-radius: 50%;
-  cursor: pointer;
+.card img{
+
+width:100%;
+height:320px;
+
+object-fit:cover;
+
+transition:0.5s;
+
+cursor:pointer;
 }
 
-.remove i {
-  color: red;
+.card:hover img{
+transform:scale(1.08);
+}
+
+/* REMOVE */
+
+.remove{
+
+position:absolute;
+
+top:15px;
+right:15px;
+
+width:45px;
+height:45px;
+
+display:flex;
+justify-content:center;
+align-items:center;
+
+background:rgba(0,0,0,0.6);
+
+backdrop-filter:blur(10px);
+
+border-radius:50%;
+
+cursor:pointer;
+
+z-index:2;
+
+transition:0.3s;
+}
+
+.remove:hover{
+transform:scale(1.1);
+background:red;
+}
+
+.remove i{
+color:white;
+font-size:20px;
+}
+
+/* CARD CONTENT */
+
+.card-content{
+padding:25px;
+}
+
+.card-content h3{
+font-size:1.5rem;
+margin-bottom:12px;
+}
+
+.card-content p{
+color:#aaa;
+line-height:1.7;
+margin-bottom:25px;
+}
+
+/* BUTTONS */
+
+.card-buttons{
+display:flex;
+gap:15px;
+}
+
+.card-btn{
+
+flex:1;
+
+padding:14px;
+
+border-radius:12px;
+
+text-align:center;
+
+text-decoration:none;
+
+font-weight:bold;
+
+transition:0.3s;
+}
+
+.primary{
+background:gold;
+color:black;
+}
+
+.secondary{
+border:1px solid rgba(255,255,255,0.15);
+color:white;
+}
+
+.card-btn:hover{
+transform:translateY(-4px);
+}
+
+/* EMPTY STATE */
+
+.empty{
+
+height:50vh;
+
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+
+text-align:center;
+
+padding:20px;
+}
+
+.empty i{
+font-size:5rem;
+color:gold;
+margin-bottom:25px;
+}
+
+.empty h2{
+font-size:2.5rem;
+margin-bottom:15px;
+}
+
+.empty p{
+color:#aaa;
+margin-bottom:30px;
 }
 
 /* LIGHTBOX */
-#lightbox {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.95);
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
+#lightbox{
 
-  opacity: 0;
-  pointer-events: none;
-  transition: 0.4s;
+position:fixed;
 
-  z-index: 9999;
+top:0;
+left:0;
+
+width:100%;
+height:100%;
+
+background:rgba(0,0,0,0.95);
+
+display:flex;
+justify-content:center;
+align-items:center;
+
+opacity:0;
+pointer-events:none;
+
+transition:0.4s;
+
+z-index:99999;
 }
 
-#lightbox.active {
-  opacity: 1;
-  pointer-events: all;
+#lightbox.active{
+opacity:1;
+pointer-events:all;
 }
 
-#lightbox img {
-  max-width: 90%;
-  max-height: 90%;
-  border-radius: 12px;
+#lightbox img{
 
-  transform: scale(0.8);
-  transition: 0.4s;
+max-width:90%;
+max-height:90%;
+
+border-radius:20px;
+
+transform:scale(0.8);
+
+transition:0.4s;
 }
 
-#lightbox.active img {
-  transform: scale(1);
+#lightbox.active img{
+transform:scale(1);
 }
 
-#close-btn {
-  position: absolute;
-  top: 20px;
-  right: 30px;
-  font-size: 40px;
-  cursor: pointer;
+#close-btn{
+
+position:absolute;
+
+top:25px;
+right:35px;
+
+font-size:45px;
+
+cursor:pointer;
+
+color:white;
+}
+
+/* FOOTER */
+
+.footer{
+
+padding:60px 20px;
+
+text-align:center;
+
+background:#111;
+
+border-top:1px solid rgba(255,255,255,0.06);
+}
+
+.footer p{
+color:#888;
+margin-top:10px;
 }
 
 /* MOBILE */
+
+@media(max-width:992px){
+
+.grid{
+grid-template-columns:repeat(2,1fr);
+}
+
+}
+
 @media(max-width:768px){
-  .grid {
-    grid-template-columns: 1fr;
-  }
+
+.navbar{
+padding:18px 20px;
+}
+
+.hero{
+padding-top:130px;
+}
+
+.hero h1{
+font-size:2.7rem;
+}
+
+.grid{
+grid-template-columns:1fr;
+padding:0 20px 80px;
+}
+
+.card img{
+height:280px;
+}
+
 }
 
 </style>
@@ -121,81 +407,272 @@ h1 {
 
 <body>
 
-<h1>Your Wishlist ❤️</h1>
+<!-- ========================= -->
+<!-- NAVBAR -->
+<!-- ========================= -->
+
+<nav class="navbar">
+
+<div class="logo">
+Luxury Tiles
+</div>
+
+<a href="index.html" class="back-btn">
+← Back Home
+</a>
+
+</nav>
+
+<!-- ========================= -->
+<!-- HERO -->
+<!-- ========================= -->
+
+<section class="hero">
+
+<h1>
+Your Wishlist ❤️
+</h1>
+
+<p>
+Save your favorite premium tile collections for later.
+</p>
+
+</section>
+
+<!-- ========================= -->
+<!-- GRID -->
+<!-- ========================= -->
 
 <div class="grid" id="wishlist-container"></div>
 
+<!-- ========================= -->
 <!-- LIGHTBOX -->
+<!-- ========================= -->
+
 <div id="lightbox">
-  <span id="close-btn">&times;</span>
-  <img id="lightbox-img">
+
+<span id="close-btn">
+&times;
+</span>
+
+<img id="lightbox-img">
+
 </div>
+
+<!-- ========================= -->
+<!-- FOOTER -->
+<!-- ========================= -->
+
+<footer class="footer">
+
+<h2>
+Luxury Tiles
+</h2>
+
+<p>
+Premium tile collections crafted for elegant spaces.
+</p>
+
+<p>
+Designed By Suhail
+</p>
+
+</footer>
+
+<!-- ========================= -->
+<!-- JAVASCRIPT -->
+<!-- ========================= -->
 
 <script>
 
-// PRODUCTS DATA
+/* PRODUCTS */
+
 const products = {
-  k1: { name: "Urban Slate", img: "urban slate.jpg" },
-  k2: { name: "Glossy White", img: "glossywhite.jpeg" },
-  k3: { name: "Granite Black", img: "granite black.jpeg" },
-  k4: { name: "Beige Stone", img: "beiuge stone.jpg" }
+
+k1: {
+name: "Urban Slate",
+img: "urban slate.jpg",
+desc: "Modern matte texture crafted for elegant interiors."
+},
+
+k2: {
+name: "Glossy White",
+img: "glossywhite.jpeg",
+desc: "Luxury glossy finish perfect for premium spaces."
+},
+
+k3: {
+name: "Granite Black",
+img: "granite black.jpeg",
+desc: "Bold dark aesthetics with premium granite texture."
+},
+
+k4: {
+name: "Beige Stone",
+img: "beiuge stone.jpg",
+desc: "Warm stone-inspired finish for timeless interiors."
+}
+
 };
 
-// LOAD WISHLIST
+/* LOAD WISHLIST */
+
 let saved = JSON.parse(localStorage.getItem("wishlist")) || [];
 
-const container = document.getElementById("wishlist-container");
+const container =
+document.getElementById("wishlist-container");
+
+/* RENDER */
 
 function renderWishlist(){
-  container.innerHTML = "";
 
-  if(saved.length === 0){
-    container.innerHTML = "<p style='text-align:center'>No items added yet 😢</p>";
-    return;
-  }
+container.innerHTML = "";
 
-  saved.forEach(id => {
-    if(products[id]){
-      container.innerHTML += `
-        <div class="card">
-          <div class="remove" onclick="removeItem('${id}')">
-            <i class="ri-heart-fill"></i>
-          </div>
-          <img src="${products[id].img}" onclick="openImage('${products[id].img}')">
-          <h3>${products[id].name}</h3>
-        </div>
-      `;
-    }
-  });
+/* EMPTY */
+
+if(saved.length === 0){
+
+container.innerHTML = `
+
+<div class="empty">
+
+<i class="ri-heart-3-line"></i>
+
+<h2>
+Your Wishlist Is Empty
+</h2>
+
+<p>
+Save your favorite tile collections to view them later.
+</p>
+
+<a href="collections.html" class="card-btn primary">
+Explore Collections
+</a>
+
+</div>
+
+`;
+
+return;
 }
 
-// REMOVE ITEM
+/* ITEMS */
+
+saved.forEach(id => {
+
+if(products[id]){
+
+container.innerHTML += `
+
+<div class="card">
+
+<div class="card-img">
+
+<div class="remove"
+onclick="removeItem('${id}')">
+
+<i class="ri-heart-fill"></i>
+
+</div>
+
+<img 
+src="${products[id].img}"
+onclick="openImage('${products[id].img}')">
+
+</div>
+
+<div class="card-content">
+
+<h3>
+${products[id].name}
+</h3>
+
+<p>
+${products[id].desc}
+</p>
+
+<div class="card-buttons">
+
+<a href="https://wa.me/91XXXXXXXXXX"
+class="card-btn primary">
+
+Inquiry
+
+</a>
+
+<a href="collections.html"
+class="card-btn secondary">
+
+More Designs
+
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+`;
+
+}
+
+});
+
+}
+
+/* REMOVE */
+
 function removeItem(id){
-  saved = saved.filter(item => item !== id);
-  localStorage.setItem("wishlist", JSON.stringify(saved));
-  renderWishlist();
+
+saved = saved.filter(item => item !== id);
+
+localStorage.setItem(
+"wishlist",
+JSON.stringify(saved)
+);
+
+renderWishlist();
+
 }
 
-// LIGHTBOX
-const lightbox = document.getElementById("lightbox");
-const lightboxImg = document.getElementById("lightbox-img");
+/* LIGHTBOX */
+
+const lightbox =
+document.getElementById("lightbox");
+
+const lightboxImg =
+document.getElementById("lightbox-img");
 
 function openImage(src){
-  lightbox.classList.add("active");
-  lightboxImg.src = src;
+
+lightbox.classList.add("active");
+
+lightboxImg.src = src;
+
 }
 
+/* CLOSE */
+
 document.getElementById("close-btn").onclick = () => {
-  lightbox.classList.remove("active");
+
+lightbox.classList.remove("active");
+
 };
 
 lightbox.onclick = (e) => {
-  if(e.target !== lightboxImg){
-    lightbox.classList.remove("active");
-  }
+
+if(e.target !== lightboxImg){
+
+lightbox.classList.remove("active");
+
+}
+
 };
 
-// INIT
+/* INIT */
+
 renderWishlist();
 
 </script>

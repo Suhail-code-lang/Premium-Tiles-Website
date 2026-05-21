@@ -3,126 +3,263 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Collections</title>
+<title>All Collections</title>
 
 <link href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css" rel="stylesheet">
 
 <style>
 
-body {
-  background: #0f0f0f;
-  color: white;
-  font-family: sans-serif;
-  margin: 0;
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
 }
 
-/* TITLE */
-h1 {
-  text-align: center;
-  margin: 40px 0;
+body{
+background:#0b0b0b;
+color:white;
+font-family:sans-serif;
+overflow-x:hidden;
+}
+
+/* HEADER */
+
+.header{
+text-align:center;
+padding:70px 20px 40px;
+}
+
+.top-tag{
+display:inline-block;
+padding:10px 18px;
+background:rgba(255,255,255,0.08);
+border-radius:30px;
+backdrop-filter:blur(10px);
+font-size:14px;
+margin-bottom:20px;
+color:#ddd;
+}
+
+.header h1{
+font-size:4rem;
+margin-bottom:15px;
+}
+
+.subtitle{
+color:#aaa;
+font-size:1.1rem;
+}
+
+/* CONTAINER */
+
+.container{
+max-width:1450px;
+margin:auto;
 }
 
 /* GRID */
-.grid {
-  display: grid;
-  grid-template-columns: repeat(4,1fr);
-  gap: 25px;
-  padding: 40px;
+
+.grid{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:30px;
+padding:40px;
 }
 
 /* CARD */
-.card {
-  position: relative;
-  background: #111;
-  border-radius: 12px;
-  overflow: hidden;
-  cursor: pointer;
-  transition: 0.4s;
+
+.card{
+position:relative;
+background:#111;
+border-radius:20px;
+overflow:hidden;
+cursor:pointer;
+transition:0.4s;
 }
 
-.card:hover {
-  transform: scale(1.03);
+.card:hover{
+transform:translateY(-10px);
 }
 
 /* IMAGE */
-.card img {
-  width: 100%;
-  height: 250px;
-  object-fit: cover;
+
+.card img{
+width:100%;
+height:340px;
+object-fit:cover;
+transition:0.6s;
+}
+
+.card:hover img{
+transform:scale(1.08);
+}
+
+/* GRADIENT */
+
+.card::after{
+content:"";
+position:absolute;
+left:0;
+bottom:0;
+width:100%;
+height:50%;
+background:linear-gradient(to top, rgba(0,0,0,0.95), transparent);
+pointer-events:none;
 }
 
 /* TITLE */
-.card h3 {
-  position: absolute;
-  bottom: 10px;
-  left: 10px;
+
+.card h3{
+position:absolute;
+bottom:25px;
+left:20px;
+font-size:1.6rem;
+z-index:3;
+}
+
+/* CATEGORY TAG */
+
+.category-tag{
+position:absolute;
+top:18px;
+left:18px;
+background:rgba(255,255,255,0.1);
+backdrop-filter:blur(10px);
+padding:8px 14px;
+border-radius:20px;
+font-size:12px;
+z-index:5;
 }
 
 /* HEART */
-.heart {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  background: rgba(0,0,0,0.6);
-  padding: 8px;
-  border-radius: 50%;
-  z-index: 2;
-  cursor: pointer;
+
+.heart{
+position:absolute;
+top:18px;
+right:18px;
+width:42px;
+height:42px;
+display:flex;
+justify-content:center;
+align-items:center;
+background:rgba(255,255,255,0.1);
+backdrop-filter:blur(10px);
+border-radius:50%;
+cursor:pointer;
+z-index:6;
 }
 
-.heart.active i {
-  color: red;
+.heart i{
+font-size:20px;
+color:white;
+}
+
+.heart.active i{
+color:red;
+}
+
+/* OVERLAY */
+
+.overlay{
+position:absolute;
+inset:0;
+background:rgba(0,0,0,0.45);
+display:flex;
+justify-content:center;
+align-items:center;
+opacity:0;
+transition:0.4s;
+z-index:4;
+}
+
+.card:hover .overlay{
+opacity:1;
+}
+
+/* BUTTON */
+
+.overlay a{
+background:white;
+color:black;
+padding:14px 22px;
+border-radius:10px;
+text-decoration:none;
+font-weight:bold;
+transition:0.3s;
+}
+
+.overlay a:hover{
+transform:scale(1.05);
 }
 
 /* LIGHTBOX */
-#lightbox {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.95);
-  display: flex;
-  justify-content: center;
-  align-items: center;
 
-  opacity: 0;
-  pointer-events: none;
-  transition: 0.4s;
-  z-index: 9999;
+#lightbox{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.95);
+display:flex;
+justify-content:center;
+align-items:center;
+opacity:0;
+pointer-events:none;
+transition:0.4s;
+z-index:9999;
 }
 
-#lightbox.active {
-  opacity: 1;
-  pointer-events: all;
+#lightbox.active{
+opacity:1;
+pointer-events:all;
 }
 
-#lightbox img {
-  max-width: 90%;
-  max-height: 90%;
-  transform: scale(0.8);
-  transition: 0.4s;
+#lightbox img{
+max-width:90%;
+max-height:90%;
+border-radius:15px;
+transform:scale(0.8);
+transition:0.4s;
 }
 
-#lightbox.active img {
-  transform: scale(1);
+#lightbox.active img{
+transform:scale(1);
 }
 
-#close-btn {
-  position: absolute;
-  top: 20px;
-  right: 30px;
-  font-size: 40px;
-  cursor: pointer;
+#close-btn{
+position:absolute;
+top:20px;
+right:35px;
+font-size:50px;
+cursor:pointer;
 }
 
 /* RESPONSIVE */
-@media(max-width:1024px){
-  .grid { grid-template-columns: repeat(2,1fr); }
+
+@media(max-width:1200px){
+
+.grid{
+grid-template-columns:repeat(2,1fr);
+}
+
 }
 
 @media(max-width:768px){
-  .grid { grid-template-columns: 1fr; }
+
+.header h1{
+font-size:2.8rem;
+}
+
+.grid{
+grid-template-columns:1fr;
+padding:20px;
+}
+
+.card img{
+height:300px;
+}
+
 }
 
 </style>
@@ -130,116 +267,247 @@ h1 {
 
 <body>
 
-<h1>All Collections</h1>
+<!-- HEADER -->
+
+<section class="header">
+
+<span class="top-tag">
+Premium Tile Collections
+</span>
+
+<h1>
+All Collections
+</h1>
+
+<p class="subtitle">
+Explore premium tile designs crafted for every modern space.
+</p>
+
+</section>
+
+<!-- GRID -->
+
+<div class="container">
 
 <div class="grid">
 
+<!-- CARD 1 -->
+
 <div class="card" data-id="k1">
+
+<div class="category-tag">
+Bathroom
+</div>
+
 <div class="heart" onclick="toggleHeart(this)">
 <i class="ri-heart-line"></i>
 </div>
+
 <img src="carraraluxe.jpg">
-<h3>Carrara Luxe</h3>
+
+<div class="overlay">
+<a href="bathroom.html">
+View Collection
+</a>
 </div>
+
+<h3>Carrara Luxe</h3>
+
+</div>
+
+<!-- CARD 2 -->
 
 <div class="card" data-id="k2">
+
+<div class="category-tag">
+Living Room
+</div>
+
 <div class="heart" onclick="toggleHeart(this)">
 <i class="ri-heart-line"></i>
 </div>
+
 <img src="urban slate.jpg">
-<h3>Urban Slate</h3>
+
+<div class="overlay">
+<a href="livingroom.html">
+View Collection
+</a>
 </div>
+
+<h3>Urban Slate</h3>
+
+</div>
+
+<!-- CARD 3 -->
 
 <div class="card" data-id="k3">
-<div class="heart" onclick="toggleHeart(this)">
-<i class="ri-heart-line"></i>
-</div>
-<img src="rustic oak.jpg">
-<h3>Rustic Oak</h3>
+
+<div class="category-tag">
+Bedroom
 </div>
 
-<div class="card" data-id="k4">
 <div class="heart" onclick="toggleHeart(this)">
 <i class="ri-heart-line"></i>
 </div>
+
+<img src="rustic oak.jpg">
+
+<div class="overlay">
+<a href="bedroom.html">
+View Collection
+</a>
+</div>
+
+<h3>Rustic Oak</h3>
+
+</div>
+
+<!-- CARD 4 -->
+
+<div class="card" data-id="k4">
+
+<div class="category-tag">
+Commercial
+</div>
+
+<div class="heart" onclick="toggleHeart(this)">
+<i class="ri-heart-line"></i>
+</div>
+
 <img src="platinum gloss.jpg">
+
+<div class="overlay">
+<a href="commercial.html">
+View Collection
+</a>
+</div>
+
 <h3>Platinum Gloss</h3>
+
+</div>
+
 </div>
 
 </div>
 
 <!-- LIGHTBOX -->
+
 <div id="lightbox">
+
 <span id="close-btn">&times;</span>
+
 <img id="lightbox-img">
+
 </div>
 
 <script>
 
-/* WISHLIST TOGGLE */
-function toggleHeart(el) {
-  const card = el.closest(".card");
-  const id = card.getAttribute("data-id");
-  const icon = el.querySelector("i");
+/* WISHLIST */
 
-  let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+function toggleHeart(el){
 
-  if (wishlist.includes(id)) {
-    wishlist = wishlist.filter(item => item !== id);
-    icon.classList.remove("ri-heart-fill");
-    icon.classList.add("ri-heart-line");
-    el.classList.remove("active");
-  } else {
-    wishlist.push(id);
-    icon.classList.remove("ri-heart-line");
-    icon.classList.add("ri-heart-fill");
-    el.classList.add("active");
-  }
+const card = el.closest(".card");
 
-  localStorage.setItem("wishlist", JSON.stringify(wishlist));
+const id = card.getAttribute("data-id");
+
+const icon = el.querySelector("i");
+
+let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+
+if(wishlist.includes(id)){
+
+wishlist = wishlist.filter(item => item !== id);
+
+icon.classList.remove("ri-heart-fill");
+
+icon.classList.add("ri-heart-line");
+
+el.classList.remove("active");
+
+} else {
+
+wishlist.push(id);
+
+icon.classList.remove("ri-heart-line");
+
+icon.classList.add("ri-heart-fill");
+
+el.classList.add("active");
+
 }
 
-/* LOAD STATE */
+localStorage.setItem("wishlist", JSON.stringify(wishlist));
+
+}
+
+/* LOAD WISHLIST */
+
 document.addEventListener("DOMContentLoaded", () => {
-  const saved = JSON.parse(localStorage.getItem("wishlist")) || [];
 
-  document.querySelectorAll(".card").forEach(card => {
-    const id = card.getAttribute("data-id");
-    const icon = card.querySelector(".heart i");
+const saved = JSON.parse(localStorage.getItem("wishlist")) || [];
 
-    if (saved.includes(id)) {
-      icon.classList.remove("ri-heart-line");
-      icon.classList.add("ri-heart-fill");
-      card.querySelector(".heart").classList.add("active");
-    }
-  });
+document.querySelectorAll(".card").forEach(card => {
+
+const id = card.getAttribute("data-id");
+
+const icon = card.querySelector(".heart i");
+
+if(saved.includes(id)){
+
+icon.classList.remove("ri-heart-line");
+
+icon.classList.add("ri-heart-fill");
+
+card.querySelector(".heart").classList.add("active");
+
+}
+
+});
+
 });
 
 /* LIGHTBOX */
+
 const cards = document.querySelectorAll(".card");
+
 const lightbox = document.getElementById("lightbox");
+
 const lightboxImg = document.getElementById("lightbox-img");
 
 cards.forEach(card => {
-  card.addEventListener("click", (e) => {
 
-    if (e.target.closest(".heart")) return;
+card.addEventListener("click", (e) => {
 
-    const img = card.querySelector("img");
+if(
+e.target.closest(".heart") ||
+e.target.closest(".overlay a")
+) return;
 
-    lightbox.classList.add("active");
-    lightboxImg.src = img.src;
-  });
+const img = card.querySelector("img");
+
+lightbox.classList.add("active");
+
+lightboxImg.src = img.src;
+
+});
+
 });
 
 document.getElementById("close-btn").onclick = () => {
-  lightbox.classList.remove("active");
+
+lightbox.classList.remove("active");
+
 };
 
 lightbox.onclick = (e) => {
-  if (e.target !== lightboxImg) {
-    lightbox.classList.remove("active");
-  }
+
+if(e.target !== lightboxImg){
+
+lightbox.classList.remove("active");
+
+}
+
 };
 
 </script>
