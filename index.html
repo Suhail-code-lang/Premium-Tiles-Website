@@ -5,7 +5,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Luxury Tiles</title>
+<title>MC & Company</title>
 
 <link href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css" rel="stylesheet">
 
@@ -29,70 +29,184 @@ color:white;
 overflow-x:hidden;
 }
 
-/* ========================= */
 /* NAVBAR */
-/* ========================= */
 
 .navbar{
 position:fixed;
 top:0;
 left:0;
 width:100%;
+padding:20px 7%;
 display:flex;
 justify-content:space-between;
 align-items:center;
-padding:20px 60px;
-background:rgba(0,0,0,0.45);
+background:rgba(0,0,0,0.55);
 backdrop-filter:blur(14px);
-border-bottom:1px solid rgba(255,255,255,0.08);
 z-index:9999;
+border-bottom:1px solid rgba(255,255,255,0.06);
 }
 
 .logo{
 font-size:1.5rem;
 font-weight:700;
-letter-spacing:2px;
+letter-spacing:1px;
+color:#fff;
 }
+
+/* NAV LINKS */
 
 .nav-links{
 display:flex;
-gap:35px;
 align-items:center;
+gap:30px;
 }
 
 .nav-links a{
-color:white;
 text-decoration:none;
-font-size:15px;
-font-weight:500;
+color:#fff;
+font-size:0.95rem;
 transition:0.3s;
-position:relative;
+display:flex;
+align-items:center;
+gap:5px;
 }
 
 .nav-links a:hover{
 color:gold;
 }
 
-.nav-links a::after{
-content:"";
+/* DROPDOWN */
+
+.dropdown{
+position:relative;
+}
+
+.dropdown-menu{
 position:absolute;
+top:140%;
 left:0;
-bottom:-6px;
-width:0%;
-height:2px;
-background:gold;
+min-width:220px;
+background:#111;
+border:1px solid rgba(255,255,255,0.06);
+border-radius:16px;
+padding:15px 0;
+opacity:0;
+visibility:hidden;
+transform:translateY(20px);
+transition:0.4s;
+box-shadow:0 10px 40px rgba(0,0,0,0.5);
+}
+
+.dropdown-menu a{
+padding:12px 22px;
+display:block;
+color:#ddd;
+font-size:0.95rem;
 transition:0.3s;
 }
 
-.nav-links a:hover::after{
-width:100%;
+.dropdown-menu a:hover{
+background:rgba(255,255,255,0.05);
+color:gold;
+padding-left:28px;
 }
+
+/* HOVER EFFECT */
+
+.dropdown:hover .dropdown-menu{
+opacity:1;
+visibility:visible;
+transform:translateY(0);
+}
+
+.dropdown:hover i{
+transform:rotate(180deg);
+}
+
+.dropdown i{
+transition:0.3s;
+}
+
+/* MENU ICON */
 
 .menu-icon{
 display:none;
-font-size:30px;
+font-size:1.8rem;
 cursor:pointer;
-z-index:10001;
+color:white;
+}
+
+/* MOBILE */
+
+@media(max-width:992px){
+
+.menu-icon{
+display:block;
+}
+
+.nav-links{
+position:fixed;
+top:80px;
+right:-100%;
+width:320px;
+height:calc(100vh - 80px);
+background:#0f0f0f;
+flex-direction:column;
+align-items:flex-start;
+padding:40px 30px;
+transition:0.5s;
+overflow-y:auto;
+}
+
+.nav-links.active{
+right:0;
+}
+
+.dropdown{
+width:100%;
+}
+
+.dropdown > a{
+width:100%;
+justify-content:space-between;
+}
+
+.dropdown-menu{
+position:static;
+opacity:1;
+visibility:visible;
+transform:none;
+display:none;
+background:#151515;
+margin-top:10px;
+width:100%;
+border-radius:12px;
+padding:10px 0;
+}
+
+.dropdown.active .dropdown-menu{
+display:block;
+animation:fadeDown 0.4s ease;
+}
+
+.dropdown-menu a{
+padding:12px 18px;
+}
+
+}
+
+@keyframes fadeDown{
+
+from{
+opacity:0;
+transform:translateY(-10px);
+}
+
+to{
+opacity:1;
+transform:translateY(0);
+}
+
 }
 
 /* ========================= */
@@ -151,15 +265,16 @@ margin-bottom:20px;
 }
 
 .hero-content h1{
-font-size:5rem;
-line-height:1.1;
+font-size:3.5rem;
+line-height:1;
 margin-bottom:20px;
+font-weight: 300;
 }
 
 .hero-content p{
 color:#ddd;
 line-height:1.8;
-font-size:1.1rem;
+font-size:1rem;
 max-width:600px;
 }
 
@@ -171,7 +286,7 @@ margin-top:30px;
 
 .primary-btn,
 .secondary-btn{
-padding:14px 24px;
+padding:11px 21px;
 border-radius:10px;
 text-decoration:none;
 font-weight:bold;
@@ -633,6 +748,292 @@ text-align:center;
 background:#111;
 }
 
+
+/* =========================
+STATS BAR
+========================= */
+
+.stats-bar{
+width:100%;
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:20px;
+padding:40px 8%;
+background:#111;
+border-top:1px solid rgba(255,255,255,0.08);
+border-bottom:1px solid rgba(255,255,255,0.08);
+}
+
+.stat-box{
+text-align:center;
+padding:20px;
+}
+
+.stat-box h3{
+font-size:2rem;
+color:#fff;
+font-weight:700;
+margin-bottom:8px;
+}
+
+.stat-box p{
+font-size:0.95rem;
+color:#bcbcbc;
+letter-spacing:0.5px;
+}
+
+
+/* =========================
+CATEGORY CONTENT
+========================= */
+
+.cat-content{
+padding:20px;
+background:#111;
+}
+
+.cat-content h3{
+font-size:1.3rem;
+font-weight:600;
+margin-bottom:10px;
+color:#fff;
+}
+
+.cat-content p{
+font-size:0.95rem;
+line-height:1.7;
+color:#bcbcbc;
+}
+
+
+/* =========================
+PRODUCT CATEGORY SECTION
+========================= */
+
+.product-category-grid{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:30px;
+margin-top:60px;
+}
+
+.product-box{
+position:relative;
+overflow:hidden;
+border-radius:20px;
+height:420px;
+display:block;
+}
+
+.product-box img{
+width:100%;
+height:100%;
+object-fit:cover;
+transition:0.6s;
+}
+
+.product-box:hover img{
+transform:scale(1.08);
+}
+
+.product-overlay{
+position:absolute;
+bottom:0;
+left:0;
+width:100%;
+padding:35px;
+background:linear-gradient(
+to top,
+rgba(0,0,0,0.9),
+rgba(0,0,0,0.2),
+transparent
+);
+}
+
+.product-overlay h3{
+font-size:1.8rem;
+margin-bottom:10px;
+color:#fff;
+font-weight:600;
+}
+
+.product-overlay p{
+font-size:1rem;
+line-height:1.7;
+color:#d6d6d6;
+max-width:85%;
+}
+
+
+/* =========================
+FEATURED SECTION
+========================= */
+
+.featured-section{
+padding:100px 8%;
+background:#0d0d0d;
+}
+
+
+/* =========================
+BRANDS SECTION
+========================= */
+
+.brands-section{
+padding:100px 8%;
+background:#111;
+text-align:center;
+}
+
+.brands-grid{
+margin-top:60px;
+display:grid;
+grid-template-columns:repeat(5,1fr);
+gap:20px;
+align-items:center;
+}
+
+.brand-item{
+padding:30px 20px;
+border:1px solid rgba(255,255,255,0.08);
+border-radius:16px;
+font-size:1.1rem;
+font-weight:600;
+color:#9f9f9f;
+background:#181818;
+transition:0.4s;
+letter-spacing:1px;
+}
+
+.brand-item:hover{
+color:#fff;
+transform:translateY(-5px);
+border-color:rgba(255,255,255,0.2);
+}
+
+
+/* =========================
+PRODUCT CATEGORY TITLE
+========================= */
+
+.product-category-grid .product-box{
+box-shadow:0 10px 40px rgba(0,0,0,0.4);
+}
+
+
+/* =========================
+SECTION SPACING
+========================= */
+
+.category-section,
+.collections,
+.featured-section,
+.brands-section,
+#about,
+#reviews,
+.contact-section{
+padding-top:100px;
+padding-bottom:100px;
+}
+
+
+/* =========================
+LUXURY SECTION TAG
+========================= */
+
+.section-tag{
+display:inline-block;
+padding:10px 18px;
+border:1px solid rgba(255,255,255,0.08);
+border-radius:50px;
+font-size:0.85rem;
+letter-spacing:1px;
+text-transform:uppercase;
+color:#d4af37;
+margin-bottom:20px;
+background:rgba(255,255,255,0.03);
+}
+
+
+/* =========================
+SECTION TITLES
+========================= */
+
+.section-title{
+font-size:3rem;
+font-weight:700;
+line-height:1.2;
+margin-bottom:20px;
+color:#fff;
+}
+
+.section-sub{
+max-width:700px;
+font-size:1rem;
+line-height:1.8;
+color:#bcbcbc;
+}
+
+
+/* =========================
+MOBILE RESPONSIVE
+========================= */
+
+@media(max-width:992px){
+
+.stats-bar{
+grid-template-columns:repeat(2,1fr);
+}
+
+.product-category-grid{
+grid-template-columns:1fr;
+}
+
+.brands-grid{
+grid-template-columns:repeat(2,1fr);
+}
+
+.section-title{
+font-size:2.3rem;
+}
+
+}
+
+@media(max-width:768px){
+
+.stats-bar{
+grid-template-columns:1fr;
+gap:10px;
+}
+
+.section-title{
+font-size:2rem;
+}
+
+.product-box{
+height:320px;
+}
+
+.product-overlay{
+padding:25px;
+}
+
+.product-overlay h3{
+font-size:1.4rem;
+}
+
+.product-overlay p{
+font-size:0.9rem;
+max-width:100%;
+}
+
+.brands-grid{
+grid-template-columns:1fr;
+}
+
+}
+
+
 /* ========================= */
 /* MOBILE */
 /* ========================= */
@@ -686,7 +1087,7 @@ padding:8px 14px;
 }
 
 .hero-content h1{
-font-size:2.6rem;
+font-size:2rem;
 line-height:1.15;
 margin-bottom:18px;
 }
@@ -698,7 +1099,7 @@ line-height:1.7;
 }
 
 .hero-buttons{
-flex-direction:column;
+flex-direction:row;
 width:100%;
 }
 
@@ -774,24 +1175,141 @@ padding:25px;
 
 <nav class="navbar">
 
-<div class="logo">
-Luxury Tiles
-</div>
+  <div class="logo">
+    MC & Company
+  </div>
 
-<div class="menu-icon" id="menuBtn">
-<i class="ri-menu-3-line"></i>
-</div>
+  <!-- MOBILE MENU -->
 
-<div class="nav-links" id="navLinks">
+  <div class="menu-icon" id="menuBtn">
+    <i class="ri-menu-3-line"></i>
+  </div>
 
-<a href="#home">Home</a>
-<a href="#collections">Collections</a>
-<a href="#about">About</a>
-<a href="#reviews">Reviews</a>
-<a href="#contact">Contact</a>
-<a href="wishlist.html">Wishlist</a>
+  <!-- NAV LINKS -->
 
-</div>
+  <div class="nav-links" id="navLinks">
+
+    <a href="#home">Home</a>
+
+    <!-- TILES -->
+
+    <div class="dropdown">
+
+      <a href="tiles.html">
+        Tiles
+        <i class="ri-arrow-down-s-line"></i>
+      </a>
+
+      <div class="dropdown-menu">
+
+        <a href="kitchen-tiles.html">Kitchen Tiles</a>
+        <a href="bathroom-tiles.html">Bathroom Tiles</a>
+        <a href="outdoor-tiles.html">Outdoor Tiles</a>
+        <a href="bedroom-tiles.html">Bedroom Tiles</a>
+        <a href="office-tiles.html">Office Tiles</a>
+
+      </div>
+
+    </div>
+
+    <!-- BATHWARE -->
+
+    <div class="dropdown">
+
+      <a href="bathware.html">
+        Bathware
+        <i class="ri-arrow-down-s-line"></i>
+      </a>
+
+      <div class="dropdown-menu">
+
+        <a href="all-showers.html">Showers</a>
+        <a href="all-bath-faucets.html">Faucets</a>
+        <a href="all-bath-accessories.html">Accessories</a>
+
+      </div>
+
+    </div>
+
+    <!-- SANITARY -->
+
+    <div class="dropdown">
+
+      <a href="sanitary.html">
+        Sanitary
+        <i class="ri-arrow-down-s-line"></i>
+      </a>
+
+      <div class="dropdown-menu">
+
+        <a href="all-sanitary-basins.html">Basins</a>
+        <a href="all-toilets.html">Toilets</a>
+        <a href="all-vanity.html">Vanity Units</a>
+
+      </div>
+
+    </div>
+
+    <!-- KITCHEN -->
+
+    <div class="dropdown">
+
+      <a href="kitchen.html">
+        Kitchen
+        <i class="ri-arrow-down-s-line"></i>
+      </a>
+
+      <div class="dropdown-menu">
+
+        <a href="all-sinks.html">Sinks</a>
+        <a href="all-faucets.html">Faucets</a>
+        <a href="all-accessories.html">Accessories</a>
+
+      </div>
+
+    </div>
+
+    <!-- ABOUT -->
+
+    <div class="dropdown">
+
+      <a href="#about">
+        About
+        <i class="ri-arrow-down-s-line"></i>
+      </a>
+
+      <div class="dropdown-menu">
+
+        <a href="#">Our Story</a>
+        <a href="#">Luxury Collections</a>
+        <a href="#">Brands</a>
+
+      </div>
+
+    </div>
+
+    <!-- CONTACT -->
+
+    <div class="dropdown">
+
+      <a href="#contact">
+        Contact
+        <i class="ri-arrow-down-s-line"></i>
+      </a>
+
+      <div class="dropdown-menu">
+
+        <a href="#">Visit Showroom</a>
+        <a href="#">Call Us</a>
+        <a href="#">WhatsApp</a>
+
+      </div>
+
+    </div>
+
+    <a href="wishlist.html">Saved Designs</a>
+
+  </div>
 
 </nav>
 
@@ -800,7 +1318,7 @@ Luxury Tiles
 <section class="video-hero" id="home">
 
 <video autoplay muted loop playsinline>
-<source src="hero video.mp4" type="video/mp4">
+<source src="landing-video.mp4" type="video/mp4">
 </video>
 
 <div class="hero-overlay"></div>
@@ -808,21 +1326,21 @@ Luxury Tiles
 <div class="hero-content">
 
 <span class="hero-tag">
-Premium Luxury Collection
+Luxury Interior Collection
 </span>
 
 <h1>
-Transform Your Space With Luxury Tiles
+Transform Your Home Into A Luxury Experience
 </h1>
 
 <p>
-Elegant tile collections crafted for modern homes and luxury interiors.
+Discover premium tiles, sanitaryware, and bath collections designed for sophisticated modern interiors.
 </p>
 
 <div class="hero-buttons">
 
-<a href="#collections" class="primary-btn">
-Explore Collections
+<a href="#spaces" class="primary-btn">
+Explore Spaces
 </a>
 
 <a href="#contact" class="secondary-btn">
@@ -835,81 +1353,185 @@ Visit Showroom
 
 </section>
 
-<!-- CATEGORY -->
+<!-- STATS -->
 
-<section class="category-section">
+<section class="stats-bar">
+
+<div class="stat-box">
+<h3>25+</h3>
+<p>Years Experience</p>
+</div>
+
+<div class="stat-box">
+<h3>500+</h3>
+<p>Luxury Designs</p>
+</div>
+
+<div class="stat-box">
+<h3>10K+</h3>
+<p>Happy Customers</p>
+</div>
+
+<div class="stat-box">
+<h3>Premium</h3>
+<p>Trusted Brands</p>
+</div>
+
+</section>
+
+<!-- SPACES -->
+
+<section class="category-section" id="spaces">
 
 <h2 class="section-title">
-Find Tiles By Category
+Explore By Space
 </h2>
 
 <p class="section-sub">
-Premium designs crafted for every modern interior
+Curated collections designed for every corner of modern living.
 </p>
 
 <div class="category-grid">
 
 <div class="cat-card">
+
 <a href="bathroom.html">
 <img src="Bathroom.jpg">
 </a>
+
+<div class="cat-content">
 <h3>Bathroom</h3>
+<p>Luxury bath spaces crafted with elegance.</p>
+</div>
+
 </div>
 
 <div class="cat-card">
-<a href="kitchen.html">
+
+<a href="kitchen-tiles.html">
 <img src="kitchen-image.jpg">
 </a>
+
+<div class="cat-content">
 <h3>Kitchen</h3>
+<p>Modern surfaces for contemporary kitchens.</p>
+</div>
+
 </div>
 
 <div class="cat-card">
+
 <a href="livingroom.html">
 <img src="living room.jpg">
 </a>
+
+<div class="cat-content">
 <h3>Living Room</h3>
+<p>Premium interiors designed for timeless living.</p>
+</div>
+
 </div>
 
 <div class="cat-card">
+
 <a href="bedroom.html">
 <img src="bedroom.jpg">
 </a>
+
+<div class="cat-content">
 <h3>Bedroom</h3>
+<p>Elegant textures for warm modern spaces.</p>
+</div>
+
 </div>
 
 <div class="cat-card">
+
 <a href="outdoor.html">
 <img src="outdoor marble.jpg">
 </a>
+
+<div class="cat-content">
 <h3>Outdoor</h3>
+<p>Durable luxury crafted for exterior elegance.</p>
+</div>
+
 </div>
 
 <div class="cat-card">
+
 <a href="commercial.html">
 <img src="office.jpg">
 </a>
+
+<div class="cat-content">
 <h3>Commercial</h3>
+<p>Professional spaces with premium aesthetics.</p>
+</div>
+
 </div>
 
 </div>
 
 </section>
 
-<!-- COLLECTIONS -->
+<!-- PRODUCT CATEGORIES -->
 
 <section class="collections" id="collections">
 
 <span class="section-tag">
-Premium Collections
+Premium Categories
 </span>
 
 <h2 class="section-title">
-Our Collections
+Our Product Collections
 </h2>
 
 <p class="section-sub">
-Explore premium tile designs
+Explore premium surfaces, sanitaryware, and bath fittings crafted for modern interiors.
 </p>
+
+<div class="product-category-grid">
+
+<a href="sanitary.html" class="product-box">
+<img src="Untitled_design_1_.jpg">
+<div class="product-overlay">
+<h3>Sanitaryware</h3>
+<p>Luxury basins, vanity units & modern sanitary solutions.</p>
+</div>
+</a>
+
+<a href="bathware.html" class="product-box">
+<img src="bathware2.avif">
+<div class="product-overlay">
+<h3>Bathware</h3>
+<p>Premium faucets, rain showers & designer fittings.</p>
+</div>
+</a>
+
+<a href="kitchen-fitting.html" class="product-box">
+<img src="modern-kitchen.jpg">
+<div class="product-overlay">
+<h3>Kitchen Solutions</h3>
+<p>Modern sinks, faucets & contemporary kitchen designs.</p>
+</div>
+</a>
+
+</div>
+
+</section>
+
+<!-- FEATURED COLLECTIONS -->
+
+<section class="featured-section">
+
+<span class="section-tag">
+Featured Collections
+</span>
+
+<h2 class="section-title">
+Luxury Collections Crafted For Elegant Spaces
+</h2>
 
 <div class="slider-wrapper">
 
@@ -943,9 +1565,29 @@ Explore premium tile designs
 
 </div>
 
-<a href="collections.html" class="explore-btn">
-Explore More →
-</a>
+</section>
+
+<!-- BRANDS -->
+
+<section class="brands-section">
+
+<span class="section-tag">
+Trusted Brands
+</span>
+
+<h2 class="section-title">
+Partnering With Industry Leaders
+</h2>
+
+<div class="brands-grid">
+
+<div class="brand-item">Kajaria</div>
+<div class="brand-item">Somany</div>
+<div class="brand-item">Cera</div>
+<div class="brand-item">Jaquar</div>
+<div class="brand-item">Johnson</div>
+
+</div>
 
 </section>
 
@@ -970,7 +1612,7 @@ Crafting Premium Spaces Since 1998
 </h2>
 
 <p>
-For more than two decades, Luxury Tiles has been delivering premium quality tiles crafted for elegant homes and modern interiors.
+At MC & Company, we believe every space deserves timeless elegance. From premium tiles to luxury bathware, our curated collections are crafted to elevate modern interiors with style, quality, and sophistication.
 </p>
 
 <div class="about-stats">
@@ -1026,97 +1668,205 @@ Trusted By Hundreds Of Customers
 
 <div class="review-card">
 <div class="stars">★★★★★</div>
-<p>One of the best premium tile showrooms in the city.</p>
+<p>One of the best premium interior showrooms in the city.</p>
 <h4>— Mohit Jain</h4>
 </div>
 
 </div>
 
-</section>
 
-<!-- CONTACT -->
 
-<section class="contact-section" id="contact">
 
-<div class="contact-header">
+<!-- GOOGLE MAP SECTION -->
 
-<span class="section-tag">
-Get In Touch
+<section class="map-section">
+
+<div class="map-content">
+
+<span class="map-tag">
+Visit Our Showroom
 </span>
 
-<h2 class="section-title">
-Visit Our Premium Showroom
+<h2>
+Experience Luxury In Person
 </h2>
 
-<p class="section-sub">
-Experience luxury tile collections crafted for elegant interiors.
+<p>
+Visit MC & Company showroom to explore premium tiles, bathware, sanitaryware, and luxury kitchen collections.
 </p>
 
+<div class="showroom-details">
+
+<div class="detail-box">
+
+<i class="ri-map-pin-line"></i>
+
+<div>
+<h4>Location</h4>
+<p>Tile Market, Ghaziabad</p>
 </div>
-
-<div class="contact-grid">
-
-<div class="contact-box">
-
-<div class="icon-box">
-<i class="ri-map-pin-2-fill"></i>
-</div>
-
-<h3>Showroom Location</h3>
-
-<p>Shiamgir, Delhi NCR</p>
-
-<a href="https://maps.google.com" target="_blank" class="contact-btn">
-Open In Maps
-</a>
 
 </div>
 
-<div class="contact-box">
+<div class="detail-box">
 
-<div class="icon-box">
-<i class="ri-phone-fill"></i>
+<i class="ri-time-line"></i>
+
+<div>
+<h4>Opening Hours</h4>
+<p>10 AM - 9 PM</p>
 </div>
-
-<h3>Call Our Team</h3>
-
-<p>+91 XXXXX XXXXX</p>
-
-<a href="tel:+91XXXXXXXXXX" class="contact-btn">
-Call Now
-</a>
 
 </div>
 
-<div class="contact-box">
+<div class="detail-box">
 
-<div class="icon-box">
-<i class="ri-whatsapp-fill"></i>
+<i class="ri-phone-line"></i>
+
+<div>
+<h4>Call Us</h4>
+<p>+91 9876543210</p>
 </div>
 
-<h3>WhatsApp Support</h3>
-
-<p>Get instant assistance</p>
-
-<a href="https://wa.me/91XXXXXXXXXX" target="_blank" class="contact-btn">
-Chat Now
-</a>
+</div>
 
 </div>
 
 </div>
+
+<!-- MAP -->
 
 <div class="map-wrapper">
 
 <iframe
-src="https://www.google.com/maps?q=Delhi&output=embed"
+src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d224345.83923083058!2d77.0688994!3d28.6466772!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cfb5bffffffff%3A0xabcdef123456789!2sGhaziabad!5e0!3m2!1sen!2sin!4v1711111111111!5m2!1sen!2sin"
 allowfullscreen=""
-loading="lazy">
+loading="lazy"
+referrerpolicy="no-referrer-when-downgrade">
 </iframe>
 
 </div>
 
 </section>
+
+<style>
+
+/* MAP SECTION */
+
+.map-section{
+display:grid;
+grid-template-columns:1fr 1.2fr;
+gap:40px;
+padding:100px 7%;
+background:#0b0b0b;
+align-items:center;
+}
+
+/* LEFT CONTENT */
+
+.map-content h2{
+font-size:3rem;
+margin:20px 0;
+line-height:1.1;
+}
+
+.map-content p{
+color:#ccc;
+line-height:1.8;
+font-size:1rem;
+max-width:500px;
+}
+
+.map-tag{
+display:inline-block;
+padding:10px 18px;
+background:rgba(255,255,255,0.08);
+border-radius:30px;
+font-size:14px;
+color:#ddd;
+}
+
+/* DETAILS */
+
+.showroom-details{
+margin-top:40px;
+display:flex;
+flex-direction:column;
+gap:20px;
+}
+
+.detail-box{
+display:flex;
+align-items:center;
+gap:18px;
+padding:18px;
+background:#111;
+border-radius:16px;
+border:1px solid rgba(255,255,255,0.05);
+transition:0.3s;
+}
+
+.detail-box:hover{
+transform:translateX(8px);
+border-color:rgba(255,215,0,0.3);
+}
+
+.detail-box i{
+font-size:1.5rem;
+color:gold;
+}
+
+.detail-box h4{
+margin-bottom:5px;
+font-size:1rem;
+}
+
+.detail-box p{
+margin:0;
+font-size:0.95rem;
+color:#aaa;
+}
+
+/* MAP */
+
+.map-wrapper{
+width:100%;
+height:550px;
+border-radius:24px;
+overflow:hidden;
+border:1px solid rgba(255,255,255,0.08);
+box-shadow:0 20px 60px rgba(0,0,0,0.5);
+}
+
+.map-wrapper iframe{
+width:100%;
+height:100%;
+border:none;
+filter:grayscale(1) contrast(1.1);
+}
+
+/* RESPONSIVE */
+
+@media(max-width:992px){
+
+.map-section{
+grid-template-columns:1fr;
+padding:70px 20px;
+}
+
+.map-content h2{
+font-size:2.3rem;
+}
+
+.map-wrapper{
+height:400px;
+}
+
+}
+
+</style>
+
+<!-- FOOTER -->
 
 <footer class="footer">
 
@@ -1125,28 +1875,12 @@ loading="lazy">
 <div class="footer-col">
 
 <h2 class="footer-logo">
-Luxury Tiles
+MC & Company
 </h2>
 
 <p>
-Premium tile collections crafted for luxury interiors and elegant spaces.
+Premium tiles, bathware, and interior collections crafted for elegant modern spaces.
 </p>
-
-<div class="social-links">
-
-<a href="#">
-<i class="ri-instagram-line"></i>
-</a>
-
-<a href="#">
-<i class="ri-facebook-circle-line"></i>
-</a>
-
-<a href="#">
-<i class="ri-whatsapp-line"></i>
-</a>
-
-</div>
 
 </div>
 
@@ -1163,11 +1897,11 @@ Premium tile collections crafted for luxury interiors and elegant spaces.
 
 <div class="footer-col">
 
-<h3>Collections</h3>
+<h3>Categories</h3>
 
-<a href="bathroom.html">Bathroom</a>
-<a href="kitchen.html">Kitchen</a>
-<a href="livingroom.html">Living Room</a>
+<a href="tiles.html">Tiles</a>
+<a href="bathware.html">Bathware</a>
+<a href="sanitary.html">Sanitary</a>
 
 </div>
 
@@ -1175,7 +1909,11 @@ Premium tile collections crafted for luxury interiors and elegant spaces.
 
 <h3>Designed By</h3>
 
-<p><a href="https://www.instagram.com/suhail_ahmed018/">Suhail</a></p>
+<p>
+<a href="https://www.instagram.com/suhail_ahmed018/">
+Suhail
+</a>
+</p>
 
 </div>
 
@@ -1184,7 +1922,7 @@ Premium tile collections crafted for luxury interiors and elegant spaces.
 <div class="footer-bottom">
 
 <p>
-© 2026 Luxury Tiles. All Rights Reserved.
+© 2026 MC & Company. All Rights Reserved.
 </p>
 
 </div>
@@ -1201,9 +1939,7 @@ Premium tile collections crafted for luxury interiors and elegant spaces.
 <i class="ri-phone-line"></i>
 </a>
 
-<!-- FOOTER -->
-
-
+<!-- SCRIPT -->
 
 <script>
 
@@ -1216,6 +1952,8 @@ const navLinks = document.getElementById("navLinks");
 menuBtn.addEventListener("click", () => {
 
 navLinks.classList.toggle("active");
+
+/* ICON CHANGE */
 
 if(navLinks.classList.contains("active")){
 
@@ -1231,19 +1969,110 @@ menuBtn.innerHTML =
 
 });
 
-/* SLIDER */
+/* MOBILE DROPDOWNS */
+
+const dropdowns = document.querySelectorAll(".dropdown");
+
+dropdowns.forEach(dropdown => {
+
+const trigger = dropdown.querySelector("a");
+
+trigger.addEventListener("click", function(e){
+
+if(window.innerWidth <= 992){
+
+e.preventDefault();
+
+dropdown.classList.toggle("active");
+
+}
+
+});
+
+});
+
+/* PRODUCT SLIDER */
 
 const slider = document.getElementById("slider");
 
 function slideLeft(){
+
+if(slider){
+
 slider.scrollLeft -= 350;
+
+}
+
 }
 
 function slideRight(){
+
+if(slider){
+
 slider.scrollLeft += 350;
+
 }
+
+}
+
+/* WISHLIST SYSTEM */
+
+function toggleHeart(el){
+
+const card = el.closest(".product-card");
+
+const id = card.getAttribute("data-id");
+
+let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+
+if(wishlist.includes(id)){
+
+wishlist = wishlist.filter(item => item !== id);
+
+el.classList.remove("active");
+
+el.querySelector("i").classList.replace("ri-heart-fill","ri-heart-line");
+
+} else {
+
+wishlist.push(id);
+
+el.classList.add("active");
+
+el.querySelector("i").classList.replace("ri-heart-line","ri-heart-fill");
+
+}
+
+localStorage.setItem("wishlist", JSON.stringify(wishlist));
+
+}
+
+/* LOAD SAVED HEARTS */
+
+window.addEventListener("DOMContentLoaded", () => {
+
+let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+
+document.querySelectorAll(".product-card").forEach(card => {
+
+const id = card.getAttribute("data-id");
+
+const heart = card.querySelector(".heart");
+
+if(wishlist.includes(id)){
+
+heart.classList.add("active");
+
+heart.querySelector("i").classList.replace("ri-heart-line","ri-heart-fill");
+
+}
+
+});
+
+});
 
 </script>
 
 </body>
+
 </html>

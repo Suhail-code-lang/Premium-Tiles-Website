@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Luxury Toilet Collection | MC & Company</title>
+
+<link href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+font-family:sans-serif;
+background:#0b0b0b;
+color:white;
+}
+
+/* HERO */
+
+.hero{
+position:relative;
+height:60vh;
+overflow:hidden;
+}
+
+.hero img{
+width:100%;
+height:100%;
+object-fit:cover;
+filter:brightness(40%);
+}
+
+.hero-content{
+position:absolute;
+bottom:50px;
+left:60px;
+max-width:650px;
+}
+
+.hero-tag{
+display:inline-block;
+padding:10px 18px;
+background:rgba(255,255,255,0.1);
+backdrop-filter:blur(10px);
+border-radius:30px;
+margin-bottom:20px;
+font-size:14px;
+}
+
+.hero h1{
+font-size:4rem;
+line-height:1.1;
+}
+
+.hero p{
+margin-top:20px;
+color:#ddd;
+line-height:1.8;
+}
+
+/* FILTER */
+
+.filter-bar{
+display:flex;
+gap:15px;
+padding:40px 70px 20px;
+flex-wrap:wrap;
+}
+
+.filter-btn{
+padding:10px 18px;
+border:1px solid rgba(255,255,255,0.1);
+background:#111;
+color:white;
+border-radius:30px;
+cursor:pointer;
+transition:0.3s;
+}
+
+.filter-btn:hover,
+.filter-btn.active{
+background:gold;
+color:black;
+}
+
+/* PRODUCTS */
+
+.products{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:30px;
+padding:30px 70px 70px;
+}
+
+.product-card{
+position:relative;
+background:#111;
+border-radius:18px;
+overflow:hidden;
+border:1px solid rgba(255,255,255,0.06);
+transition:0.4s;
+}
+
+.product-card:hover{
+transform:translateY(-10px);
+}
+
+.product-card img{
+width:100%;
+height:320px;
+object-fit:cover;
+transition:0.4s;
+cursor:pointer;
+}
+
+.product-card:hover img{
+transform:scale(1.05);
+}
+
+/* HEART */
+
+.heart{
+position:absolute;
+top:15px;
+right:15px;
+width:42px;
+height:42px;
+display:flex;
+justify-content:center;
+align-items:center;
+background:rgba(255,255,255,0.1);
+backdrop-filter:blur(10px);
+border-radius:50%;
+cursor:pointer;
+z-index:5;
+}
+
+.heart i{
+font-size:20px;
+color:white;
+}
+
+.heart.active i{
+color:red;
+}
+
+/* TAG */
+
+.product-tag{
+position:absolute;
+top:15px;
+left:15px;
+padding:7px 14px;
+border-radius:20px;
+font-size:12px;
+background:rgba(255,255,255,0.1);
+backdrop-filter:blur(10px);
+}
+
+/* OVERLAY */
+
+.overlay{
+position:absolute;
+inset:0;
+background:rgba(0,0,0,0.45);
+display:flex;
+justify-content:center;
+align-items:center;
+opacity:0;
+transition:0.4s;
+}
+
+.product-card:hover .overlay{
+opacity:1;
+}
+
+.overlay-btn{
+padding:12px 18px;
+background:white;
+color:black;
+text-decoration:none;
+border-radius:8px;
+font-weight:bold;
+}
+
+/* CONTENT */
+
+.card-content{
+padding:22px;
+}
+
+.card-content h3{
+font-size:1.4rem;
+margin-bottom:10px;
+}
+
+.card-content p{
+color:#ccc;
+margin-bottom:8px;
+}
+
+.price{
+color:gold !important;
+font-weight:bold;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:1024px){
+
+.products{
+grid-template-columns:repeat(2,1fr);
+}
+
+}
+
+@media(max-width:768px){
+
+.hero-content{
+left:20px;
+right:20px;
+bottom:30px;
+}
+
+.hero h1{
+font-size:2.8rem;
+}
+
+.products{
+grid-template-columns:1fr;
+padding:20px;
+}
+
+.filter-bar{
+padding:30px 20px 10px;
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- HERO -->
+
+<section class="hero">
+
+<img src="luxury-toilets-banner.jpg">
+
+<div class="hero-content">
+
+<span class="hero-tag">
+Premium Toilet Collection
+</span>
+
+<h1>
+Luxury Toilet Solutions
+</h1>
+
+<p>
+Explore elegant one-piece toilets, wall hung collections, and smart sanitary solutions crafted for modern luxury bathrooms.
+</p>
+
+</div>
+
+</section>
+
+<!-- FILTER -->
+
+<div class="filter-bar">
+
+<button class="filter-btn active">
+All
+</button>
+
+<button class="filter-btn">
+One Piece WC
+</button>
+
+<button class="filter-btn">
+Wall Hung
+</button>
+
+<button class="filter-btn">
+Smart Toilets
+</button>
+
+<button class="filter-btn">
+Luxury Collection
+</button>
+
+</div>
+
+<!-- PRODUCTS -->
+
+<section class="products">
+
+<!-- CARD 1 -->
+
+<div class="product-card" data-id="toilet1">
+
+<div class="heart" onclick="toggleHeart(this)">
+<i class="ri-heart-line"></i>
+</div>
+
+<span class="product-tag">
+One Piece WC
+</span>
+
+<img src="one-piece-wc.jpg">
+
+<div class="overlay">
+<a href="#" class="overlay-btn">
+Quick Enquiry
+</a>
+</div>
+
+<div class="card-content">
+
+<h3>Luxury One Piece WC</h3>
+
+<p>Elegant Premium Bathroom Comfort</p>
+
+<p class="price">₹18,999</p>
+
+</div>
+
+</div>
+
+<!-- CARD 2 -->
+
+<div class="product-card" data-id="toilet2">
+
+<div class="heart" onclick="toggleHeart(this)">
+<i class="ri-heart-line"></i>
+</div>
+
+<span class="product-tag">
+Wall Hung
+</span>
+
+<img src="wall-hung-wc.jpg">
+
+<div class="overlay">
+<a href="#" class="overlay-btn">
+Quick Enquiry
+</a>
+</div>
+
+<div class="card-content">
+
+<h3>Wall Hung Toilet</h3>
+
+<p>Modern Minimal Bathroom Design</p>
+
+<p class="price">₹22,499</p>
+
+</div>
+
+</div>
+
+<!-- CARD 3 -->
+
+<div class="product-card" data-id="toilet3">
+
+<div class="heart" onclick="toggleHeart(this)">
+<i class="ri-heart-line"></i>
+</div>
+
+<span class="product-tag">
+Smart Toilet
+</span>
+
+<img src="smart-toilet.jpg">
+
+<div class="overlay">
+<a href="#" class="overlay-btn">
+Quick Enquiry
+</a>
+</div>
+
+<div class="card-content">
+
+<h3>Smart Toilet System</h3>
+
+<p>Luxury Intelligent Bathroom Experience</p>
+
+<p class="price">₹54,999</p>
+
+</div>
+
+</div>
+
+<!-- CARD 4 -->
+
+<div class="product-card" data-id="toilet4">
+
+<div class="heart" onclick="toggleHeart(this)">
+<i class="ri-heart-line"></i>
+</div>
+
+<span class="product-tag">
+Luxury Collection
+</span>
+
+<img src="designer-toilet.jpg">
+
+<div class="overlay">
+<a href="#" class="overlay-btn">
+Quick Enquiry
+</a>
+</div>
+
+<div class="card-content">
+
+<h3>Designer Luxury WC</h3>
+
+<p>Premium Hotel Style Collection</p>
+
+<p class="price">₹27,999</p>
+
+</div>
+
+</div>
+
+<!-- CARD 5 -->
+
+<div class="product-card" data-id="toilet5">
+
+<div class="heart" onclick="toggleHeart(this)">
+<i class="ri-heart-line"></i>
+</div>
+
+<span class="product-tag">
+Minimal Style
+</span>
+
+<img src="minimal-toilet.jpg">
+
+<div class="overlay">
+<a href="#" class="overlay-btn">
+Quick Enquiry
+</a>
+</div>
+
+<div class="card-content">
+
+<h3>Minimal Contemporary WC</h3>
+
+<p>Elegant Modern Bathroom Finish</p>
+
+<p class="price">₹19,499</p>
+
+</div>
+
+</div>
+
+<!-- CARD 6 -->
+
+<div class="product-card" data-id="toilet6">
+
+<div class="heart" onclick="toggleHeart(this)">
+<i class="ri-heart-line"></i>
+</div>
+
+<span class="product-tag">
+Premium Comfort
+</span>
+
+<img src="premium-toilet.jpg">
+
+<div class="overlay">
+<a href="#" class="overlay-btn">
+Quick Enquiry
+</a>
+</div>
+
+<div class="card-content">
+
+<h3>Premium Comfort Toilet</h3>
+
+<p>Luxury Ergonomic Bathroom Design</p>
+
+<p class="price">₹24,999</p>
+
+</div>
+
+</div>
+
+</section>
+
+<script>
+
+function toggleHeart(el){
+
+const card = el.closest(".product-card");
+
+const id = card.getAttribute("data-id");
+
+let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+
+if(wishlist.includes(id)){
+
+wishlist = wishlist.filter(item => item !== id);
+
+el.classList.remove("active");
+
+el.querySelector("i").classList.replace("ri-heart-fill","ri-heart-line");
+
+} else {
+
+wishlist.push(id);
+
+el.classList.add("active");
+
+el.querySelector("i").classList.replace("ri-heart-line","ri-heart-fill");
+
+}
+
+localStorage.setItem("wishlist", JSON.stringify(wishlist));
+
+}
+
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Luxury Bathware Collection | MC & Company</title>
+
+<link href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css" rel="stylesheet">
+
+<style>
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  font-family:sans-serif;
+  background:#0b0b0b;
+  color:white;
+}
+
+/* HERO */
+
+.hero{
+  position:relative;
+  height:75vh;
+  overflow:hidden;
+}
+
+.hero img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  filter:brightness(45%);
+}
+
+.hero-content{
+  position:absolute;
+  bottom:60px;
+  left:50px;
+  max-width:650px;
+}
+
+.hero-tag{
+  display:inline-block;
+  padding:10px 18px;
+  background:rgba(255,255,255,0.1);
+  border-radius:30px;
+  backdrop-filter:blur(10px);
+  margin-bottom:20px;
+  font-size:14px;
+}
+
+.hero h1{
+  font-size:4.5rem;
+  line-height:1.1;
+}
+
+.hero p{
+  color:#ddd;
+  margin-top:20px;
+  line-height:1.8;
+  font-size:1.1rem;
+}
+
+.hero-buttons{
+  display:flex;
+  gap:15px;
+  margin-top:30px;
+}
+
+.primary-btn,
+.secondary-btn{
+  padding:14px 24px;
+  border-radius:8px;
+  text-decoration:none;
+  font-weight:bold;
+  transition:0.3s;
+}
+
+.primary-btn{
+  background:gold;
+  color:black;
+}
+
+.secondary-btn{
+  border:1px solid white;
+  color:white;
+}
+
+.primary-btn:hover,
+.secondary-btn:hover{
+  transform:translateY(-4px);
+}
+
+/* TRUST STRIP */
+
+.trust-strip{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  background:#111;
+  border-top:1px solid #222;
+  border-bottom:1px solid #222;
+}
+
+.trust-strip div{
+  padding:20px;
+  text-align:center;
+  color:#ddd;
+  font-weight:600;
+}
+
+/* PRODUCT SECTION */
+
+.product-section{
+  padding:70px 0 20px;
+}
+
+.section-heading{
+  display:flex;
+  justify-content:space-between;
+  align-items:end;
+  gap:20px;
+  padding:0 70px 35px;
+}
+
+.section-heading h2{
+  font-size:2.6rem;
+  margin-top:12px;
+}
+
+.mini-tag{
+  display:inline-block;
+  padding:8px 16px;
+  background:rgba(255,255,255,0.08);
+  border-radius:30px;
+  font-size:13px;
+  color:#ddd;
+}
+
+/* EXPLORE MORE */
+
+.explore-more{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  text-decoration:none;
+  color:#fff;
+  font-weight:600;
+  transition:0.3s;
+}
+
+.explore-more i{
+  transition:0.3s;
+}
+
+.explore-more:hover{
+  color:gold;
+}
+
+.explore-more:hover i{
+  transform:translateX(5px);
+}
+
+/* PRODUCTS */
+
+.products{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:30px;
+  padding:0 70px;
+}
+
+/* CARD */
+
+.product-card{
+  position:relative;
+  background:#111;
+  border-radius:18px;
+  overflow:hidden;
+  transition:0.4s;
+  border:1px solid rgba(255,255,255,0.06);
+}
+
+.product-card:hover{
+  transform:translateY(-10px);
+}
+
+.product-card img{
+  width:100%;
+  height:320px;
+  object-fit:cover;
+  cursor:pointer;
+  transition:0.4s;
+}
+
+.product-card:hover img{
+  transform:scale(1.05);
+}
+
+/* TAG */
+
+.product-tag{
+  position:absolute;
+  top:15px;
+  left:15px;
+  background:rgba(255,255,255,0.1);
+  backdrop-filter:blur(10px);
+  padding:7px 14px;
+  border-radius:20px;
+  font-size:12px;
+  z-index:3;
+}
+
+/* HEART */
+
+.heart{
+  position:absolute;
+  top:15px;
+  right:15px;
+  width:42px;
+  height:42px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:rgba(255,255,255,0.1);
+  backdrop-filter:blur(10px);
+  border-radius:50%;
+  cursor:pointer;
+  z-index:5;
+}
+
+.heart i{
+  color:white;
+  font-size:20px;
+}
+
+.heart.active i{
+  color:red;
+}
+
+/* OVERLAY */
+
+.overlay{
+  position:absolute;
+  inset:0;
+  background:rgba(0,0,0,0.45);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  opacity:0;
+  transition:0.4s;
+}
+
+.product-card:hover .overlay{
+  opacity:1;
+}
+
+.overlay-btn{
+  background:white;
+  color:black;
+  padding:12px 18px;
+  border-radius:8px;
+  text-decoration:none;
+  font-weight:bold;
+}
+
+/* CONTENT */
+
+.card-content{
+  padding:22px;
+}
+
+.card-content h3{
+  margin-bottom:10px;
+  font-size:1.4rem;
+}
+
+.card-content p{
+  color:#ccc;
+  margin-bottom:8px;
+}
+
+.price{
+  color:gold !important;
+  font-weight:bold;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:768px){
+
+.hero{
+  height:65vh;
+}
+
+.hero-content{
+  left:20px;
+  right:20px;
+  bottom:40px;
+}
+
+.hero h1{
+  font-size:2.8rem;
+}
+
+.hero-buttons{
+  flex-direction:column;
+}
+
+.products{
+  grid-template-columns:1fr;
+  padding:0 25px;
+}
+
+.section-heading{
+  flex-direction:column;
+  align-items:flex-start;
+  padding:0 25px 25px;
+}
+
+.section-heading h2{
+  font-size:2rem;
+}
+
+.trust-strip{
+  grid-template-columns:1fr 1fr;
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- HERO -->
+
+<section class="hero">
+
+<img src="">
+
+<div class="hero-content">
+
+<span class="hero-tag">
+Premium Bathware Collection
+</span>
+
+<h1>
+Luxury Bathware Solutions
+</h1>
+
+<p>
+Discover elegant showers, faucets, and bath fittings crafted for sophisticated modern bathrooms.
+</p>
+
+<div class="hero-buttons">
+
+<a href="#products" class="primary-btn">
+Explore Collection
+</a>
+
+<a href="#" class="secondary-btn">
+Request Catalogue
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- TRUST -->
+
+<section class="trust-strip">
+
+<div>Luxury Bath Fittings</div>
+<div>Modern Shower Designs</div>
+<div>Premium Finishes</div>
+<div>Elegant Bathroom Style</div>
+
+</section>
+
+<!-- PRODUCTS -->
+
+<section id="products">
+
+<!-- SHOWERS -->
+
+<div class="product-section">
+
+<div class="section-heading">
+
+<div>
+
+<span class="mini-tag">
+Luxury Showers
+</span>
+
+<h2>
+Premium Shower Collection
+</h2>
+
+</div>
+
+<a href="all-showers.html" class="explore-more">
+Explore More
+<i class="ri-arrow-right-line"></i>
+</a>
+
+</div>
+
+<div class="products">
+
+<div class="product-card" data-id="shower1">
+
+<div class="heart" onclick="toggleHeart(this)">
+<i class="ri-heart-line"></i>
+</div>
+
+<span class="product-tag">
+Rain Shower
+</span>
+
+<img src="rain-shower.jpg">
+
+<div class="overlay">
+<a href="#" class="overlay-btn">
+Quick Enquiry
+</a>
+</div>
+
+<div class="card-content">
+
+<h3>Luxury Rain Shower</h3>
+
+<p>Premium Matte Black Finish</p>
+
+<p class="price">₹18,999</p>
+
+</div>
+
+</div>
+
+<div class="product-card" data-id="shower2">
+
+<div class="heart" onclick="toggleHeart(this)">
+<i class="ri-heart-line"></i>
+</div>
+
+<span class="product-tag">
+Modern Shower
+</span>
+
+<img src="shower-panel.jpg">
+
+<div class="overlay">
+<a href="#" class="overlay-btn">
+Quick Enquiry
+</a>
+</div>
+
+<div class="card-content">
+
+<h3>Smart Shower Panel</h3>
+
+<p>Contemporary Luxury Design</p>
+
+<p class="price">₹24,999</p>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- FAUCETS -->
+
+<div class="product-section">
+
+<div class="section-heading">
+
+<div>
+
+<span class="mini-tag">
+Designer Faucets
+</span>
+
+<h2>
+Premium Bath Faucets
+</h2>
+
+</div>
+
+<a href="all-bath-faucets.html" class="explore-more">
+Explore More
+<i class="ri-arrow-right-line"></i>
+</a>
+
+</div>
+
+<div class="products">
+
+<div class="product-card" data-id="faucet1">
+
+<div class="heart" onclick="toggleHeart(this)">
+<i class="ri-heart-line"></i>
+</div>
+
+<span class="product-tag">
+Luxury Faucet
+</span>
+
+<img src="gold-bath-faucet.jpg">
+
+<div class="overlay">
+<a href="#" class="overlay-btn">
+Quick Enquiry
+</a>
+</div>
+
+<div class="card-content">
+
+<h3>Golden Basin Faucet</h3>
+
+<p>Elegant Modern Finish</p>
+
+<p class="price">₹9,499</p>
+
+</div>
+
+</div>
+
+<div class="product-card" data-id="faucet2">
+
+<div class="heart" onclick="toggleHeart(this)">
+<i class="ri-heart-line"></i>
+</div>
+
+<span class="product-tag">
+Minimal Luxury
+</span>
+
+<img src="chrome-bath-faucet.jpg">
+
+<div class="overlay">
+<a href="#" class="overlay-btn">
+Quick Enquiry
+</a>
+</div>
+
+<div class="card-content">
+
+<h3>Chrome Mixer Faucet</h3>
+
+<p>Contemporary Bath Design</p>
+
+<p class="price">₹6,999</p>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- ACCESSORIES -->
+
+<div class="product-section">
+
+<div class="section-heading">
+
+<div>
+
+<span class="mini-tag">
+Bath Accessories
+</span>
+
+<h2>
+Luxury Bath Accessories
+</h2>
+
+</div>
+
+<a href="all-bath-accessories.html" class="explore-more">
+Explore More
+<i class="ri-arrow-right-line"></i>
+</a>
+
+</div>
+
+<div class="products">
+
+<div class="product-card" data-id="acc1">
+
+<div class="heart" onclick="toggleHeart(this)">
+<i class="ri-heart-line"></i>
+</div>
+
+<span class="product-tag">
+Premium Collection
+</span>
+
+<img src="bath-accessories.jpg">
+
+<div class="overlay">
+<a href="#" class="overlay-btn">
+Quick Enquiry
+</a>
+</div>
+
+<div class="card-content">
+
+<h3>Luxury Bath Set</h3>
+
+<p>Elegant Utility Accessories</p>
+
+<p class="price">₹11,999</p>
+
+</div>
+
+</div>
+
+<div class="product-card" data-id="acc2">
+
+<div class="heart" onclick="toggleHeart(this)">
+<i class="ri-heart-line"></i>
+</div>
+
+<span class="product-tag">
+Modern Style
+</span>
+
+<img src="towel-holder.jpg">
+
+<div class="overlay">
+<a href="#" class="overlay-btn">
+Quick Enquiry
+</a>
+</div>
+
+<div class="card-content">
+
+<h3>Designer Towel Holder</h3>
+
+<p>Premium Contemporary Finish</p>
+
+<p class="price">₹3,999</p>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<script>
+
+function toggleHeart(el){
+
+const card = el.closest(".product-card");
+
+const id = card.getAttribute("data-id");
+
+let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+
+if(wishlist.includes(id)){
+
+wishlist = wishlist.filter(item => item !== id);
+
+el.classList.remove("active");
+
+el.querySelector("i").classList.replace("ri-heart-fill","ri-heart-line");
+
+} else {
+
+wishlist.push(id);
+
+el.classList.add("active");
+
+el.querySelector("i").classList.replace("ri-heart-line","ri-heart-fill");
+
+}
+
+localStorage.setItem("wishlist", JSON.stringify(wishlist));
+
+}
+
+</script>
+
+</body>
+
+</html>
