@@ -385,6 +385,15 @@ margin-bottom:10px;
 color:#f7dfb3;
 }
 
+.counter{
+
+transition:0.3s;
+
+color:#f7dfb3;
+
+font-weight:400;
+}
+
 /* SECTIONS */
 
 section{
@@ -719,6 +728,8 @@ line-height:1.9;
 margin-bottom:20px;
 opacity:0.8;
 }
+
+
 
 /* MAP */
 
@@ -1271,9 +1282,8 @@ VENTURE TILES
 .navbar{
 
 position:fixed;
-
-top:18px;
-left:50%;
+top : 18px;
+left :50%;
 
 transform:translateX(-50%);
 
@@ -1298,7 +1308,7 @@ z-index:999;
 box-shadow:
 0 10px 35px rgba(0,0,0,0.35);
 
-transition:0.45s ease;
+transition: 0.45s ease;
 }
 
 /* NAVBAR SCROLL EFFECT */
@@ -1644,10 +1654,162 @@ margin-left:auto;
 }
 
 }
-```
 
+/* =========================
+MOVING BRANDS SECTION
+========================= */
 
+.brands-wrapper{
+overflow:hidden;
+width:100%;
+position:relative;
+margin-top:40px;
+}
 
+.brands-grid{
+
+display:flex !important;
+
+gap:25px;
+
+width:max-content;
+
+animation:brandScroll 22s linear infinite;
+}
+
+.brands-grid:hover{
+animation-play-state:paused;
+}
+
+.brand-item{
+
+min-width:220px;
+
+display:flex;
+justify-content:center;
+align-items:center;
+
+padding:35px 30px;
+
+border-radius:25px;
+
+background:
+linear-gradient(
+145deg,
+rgba(255,255,255,0.06),
+rgba(255,255,255,0.02)
+);
+
+border:1px solid rgba(255,255,255,0.08);
+
+backdrop-filter:blur(20px);
+
+font-size:1.4rem;
+font-weight:700;
+
+transition:0.4s;
+}
+
+.brand-item:hover{
+
+transform:translateY(-8px);
+
+color:#f7dfb3;
+
+box-shadow:
+0 15px 35px rgba(0,0,0,0.35);
+}
+
+@keyframes brandScroll{
+
+0%{
+transform:translateX(0);
+}
+
+100%{
+transform:translateX(-50%);
+}
+
+}
+
+/* =========================
+MOVING REVIEWS SECTION
+========================= */
+
+.reviews-wrapper{
+overflow:hidden;
+width:100%;
+position:relative;
+margin-top:40px;
+}
+
+.reviews-grid{
+
+display:flex !important;
+
+gap:25px;
+
+width:max-content;
+
+animation:reviewScroll 28s linear infinite;
+}
+
+.reviews-grid:hover{
+animation-play-state:paused;
+}
+
+.review-card{
+
+min-width:380px;
+
+max-width:380px;
+
+flex-shrink:0;
+}
+
+@keyframes reviewScroll{
+
+0%{
+transform:translateX(0);
+}
+
+100%{
+transform:translateX(-50%);
+}
+
+}
+
+/* =========================
+MOBILE
+========================= */
+
+@media(max-width:950px){
+
+.brand-item{
+
+min-width:180px;
+
+font-size:1.1rem;
+
+padding:25px 20px;
+}
+
+.review-card{
+
+min-width:280px;
+
+max-width:280px;
+}
+
+.brands-grid{
+animation-duration:16s;
+}
+
+.reviews-grid{
+animation-duration:20s;
+}
+
+}
 
 </style>
 
@@ -1843,23 +2005,23 @@ Visit Showroom
 <section class="stats-bar">
 
 <div class="stat-box">
-<h3>25+</h3>
+<h3 class="counter" data-target="25">0</h3>
 <p>Years Experience</p>
 </div>
 
 <div class="stat-box">
-<h3>500+</h3>
+<h3 class="counter" data-target="500">0</h3>
 <p>Luxury Designs</p>
 </div>
 
 <div class="stat-box">
-<h3>10K+</h3>
+<h3 class="counter" data-target="10000">0</h3>
 <p>Happy Customers</p>
 </div>
 
 <div class="stat-box">
-<h3>Premium</h3>
-<p>Trusted Brands</p>
+<h3 class="counter" data-target="100">0</h3>
+<p>Premium Brands</p>
 </div>
 
 </section>
@@ -2056,6 +2218,8 @@ Luxury Collections Crafted For Elegant Spaces
 
 <!-- BRANDS -->
 
+<!-- BRANDS -->
+
 <section class="brands-section">
 
 <span class="section-tag">
@@ -2066,6 +2230,8 @@ Trusted Brands
 Partnering With Industry Leaders
 </h2>
 
+<div class="brands-wrapper">
+
 <div class="brands-grid">
 
 <div class="brand-item">Kajaria</div>
@@ -2073,6 +2239,16 @@ Partnering With Industry Leaders
 <div class="brand-item">Cera</div>
 <div class="brand-item">Jaquar</div>
 <div class="brand-item">Johnson</div>
+
+<!-- DUPLICATE -->
+
+<div class="brand-item">Kajaria</div>
+<div class="brand-item">Somany</div>
+<div class="brand-item">Cera</div>
+<div class="brand-item">Jaquar</div>
+<div class="brand-item">Johnson</div>
+
+</div>
 
 </div>
 
@@ -2139,7 +2315,29 @@ Customer Reviews
 Trusted By Hundreds Of Customers
 </h2>
 
+<div class="reviews-wrapper">
+
 <div class="reviews-grid">
+
+<div class="review-card">
+<div class="stars">★★★★★</div>
+<p>Amazing tile quality and premium showroom experience.</p>
+<h4>— Rahul Sharma</h4>
+</div>
+
+<div class="review-card">
+<div class="stars">★★★★★</div>
+<p>Modern collection and excellent customer service.</p>
+<h4>— Aditi Verma</h4>
+</div>
+
+<div class="review-card">
+<div class="stars">★★★★★</div>
+<p>One of the best premium interior showrooms in the city.</p>
+<h4>— Mohit Jain</h4>
+</div>
+
+<!-- DUPLICATE -->
 
 <div class="review-card">
 <div class="stars">★★★★★</div>
@@ -2161,8 +2359,9 @@ Trusted By Hundreds Of Customers
 
 </div>
 
+</div>
 
-
+</section>
 
 <!-- GOOGLE MAP SECTION -->
 
@@ -2292,7 +2491,7 @@ Suhail
 <div class="footer-bottom">
 
 <p>
-© 2026 MC & Company. All Rights Reserved.
+© 2026 Venture Tiles. All Rights Reserved.
 </p>
 
 </div>
@@ -2439,6 +2638,68 @@ heart.querySelector("i").classList.replace("ri-heart-line","ri-heart-fill");
 
 });
 
+});
+
+/* =========================
+COUNTER ANIMATION
+========================= */
+
+const counters = document.querySelectorAll('.counter');
+
+const statsObserver = new IntersectionObserver((entries)=>{
+
+entries.forEach(entry=>{
+
+if(entry.isIntersecting){
+
+const counter = entry.target;
+
+const target = +counter.getAttribute('data-target');
+
+let count = 0;
+
+const increment = target / 80;
+
+const updateCounter = ()=>{
+
+if(count < target){
+
+count += increment;
+
+counter.innerText = Math.ceil(count);
+
+requestAnimationFrame(updateCounter);
+
+}else{
+
+if(target >= 1000){
+
+counter.innerText = (target/1000) + "K+";
+
+}else{
+
+counter.innerText = target + "+";
+
+}
+
+}
+
+};
+
+updateCounter();
+
+statsObserver.unobserve(counter);
+
+}
+
+});
+
+},{
+threshold:0.5
+});
+
+counters.forEach(counter=>{
+statsObserver.observe(counter);
 });
 
 </script>
